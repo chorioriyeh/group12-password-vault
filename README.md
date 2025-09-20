@@ -16,4 +16,17 @@ A secure local password manager with encryption, built for virtual environment d
 1. Create and activate virtual environment:
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+On Mac: source venv/bin/activate
+On Windows: venv\Scripts\activate
+
+2. Install the dependencies
+```bash
+pip install pipenv
+pipenv install
+
+3. Running with the Virtual Environment
+```bash
+pipenv shell
+python gui_vault.py
+        OR
+Right click the gui_vault.py file, Then Select run on the integrated terminal
