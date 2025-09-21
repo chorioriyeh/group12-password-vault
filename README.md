@@ -34,6 +34,11 @@ pipenv install
 pipenv shell
 python -m gui_vault
 ```
+4. Running the Tests:
+```bash
+python -m pytest test_vault.py
+```
+
         OR
 Right click the gui_vault.py file, Then Select run python file on the terminal
 
