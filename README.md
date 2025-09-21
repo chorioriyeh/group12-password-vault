@@ -11,6 +11,14 @@ A secure local password manager with encryption, built for virtual environment d
 - Change master password functionality
 - Graphical User interface
 
+##Screenshots of the Password Vault
+<img width="312" height="332" alt="Screenshot (112 2)" src="https://github.com/user-attachments/assets/c23a3d9f-cefa-4858-870e-1718f031abc6" />
+<img width="315" height="153" alt="Screenshot (111 2)" src="https://github.com/user-attachments/assets/52389529-b896-4f1c-824e-696c95363b2e" />
+
+## The Link for the Demo Video
+https://drive.google.com/file/d/1elySDSygwIwpXa8Py7FZ_xUtSqHvPN6t/view?usp=sharing
+
+
 ## Installation with Virtual Environment
 
 1. Create and activate virtual environment:
@@ -25,13 +33,13 @@ On Windows: venv\Scripts\activate
 pip install pipenv
 pipenv install
 
-##Screenshots of the Password Vault
-<img width="312" height="332" alt="Screenshot (112 2)" src="https://github.com/user-attachments/assets/c23a3d9f-cefa-4858-870e-1718f031abc6" />
-<img width="315" height="153" alt="Screenshot (111 2)" src="https://github.com/user-attachments/assets/52389529-b896-4f1c-824e-696c95363b2e" />
-
 3. Running with the Virtual Environment
 ```bash
 pipenv shell
 python gui_vault.py
         OR
 Right click the gui_vault.py file, Then Select run on the integrated terminal
+
+
+
+
