@@ -20,7 +20,7 @@ On Mac: source venv/bin/activate
 On Windows: venv\Scripts\activate
 
 2. Install the dependencies
-### Any dependencies that you make be lacking can be installed on the terminal by writing this code --- pip install "dependency"
+### Any dependencies that you make be lacking can be installed on the terminal by writing this code --- pip install dependency-name
 ```bash
 pip install pipenv
 pipenv install
