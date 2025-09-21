@@ -9,7 +9,7 @@ A secure local password manager with encryption, built for virtual environment d
 - Clipboard integration
 - SQLite database storage
 - Change master password functionality
-- Command-line interface
+- Graphical User interface
 
 ## Installation with Virtual Environment
 
