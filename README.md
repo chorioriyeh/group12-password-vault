@@ -21,20 +21,22 @@ https://drive.google.com/file/d/1elySDSygwIwpXa8Py7FZ_xUtSqHvPN6t/view?usp=shari
 
 ## Installation with Virtual Environment
 
-1. Create and activate virtual environment:
+1. Fork and Clone the Repo
+   To clone the repo on your terminal: git clone https://github.com/chorioriyeh/group12-password-vault.git
+2. Create and activate virtual environment:
 ```bash                                                                                                                                                                                    python -m venv venv                                                                                                                                                                        On Mac: source venv/bin/activate                                                                                                                                                           On Windows: venv\Scripts\activate                                                                                                                                                          ```
-2. Install the dependencies:                                                                                                                                                             Any dependencies that you make be lacking can be installed on the terminal by writing this code --- pip install dependency-name
+3. Install the dependencies:                                                                                                                                                             Any dependencies that you make be lacking can be installed on the terminal by writing this code --- pip install dependency-name
 ```bash
 pip install pipenv
 pipenv install
 ```
 
-3. Running with the Virtual Environment
+4. Running the Project with the Virtual Environment
 ```bash
 pipenv shell
 python -m gui_vault
 ```
-4. Running the Tests:
+5. Running the Tests:
 ```bash
 python -m pytest test_vault.py
 ```
