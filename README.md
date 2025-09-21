@@ -22,7 +22,9 @@ https://drive.google.com/file/d/1elySDSygwIwpXa8Py7FZ_xUtSqHvPN6t/view?usp=shari
 ## Installation with Virtual Environment
 
 1. Fork and Clone the Repo
+   ```
    To clone the repo on your terminal: git clone https://github.com/chorioriyeh/group12-password-vault.git
+   ```
 2. Create and activate virtual environment:
 ```bash                                                                                                                                                                                    python -m venv venv                                                                                                                                                                        On Mac: source venv/bin/activate                                                                                                                                                           On Windows: venv\Scripts\activate                                                                                                                                                          ```
 3. Install the dependencies:                                                                                                                                                             Any dependencies that you make be lacking can be installed on the terminal by writing this code --- pip install dependency-name
@@ -40,8 +42,7 @@ python -m gui_vault
 ```bash
 python -m pytest test_vault.py
 ```
-
-        OR
+   OR
 Right click the gui_vault.py file, Then Select run python file on the terminal
 
 
