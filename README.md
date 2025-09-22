@@ -5,7 +5,7 @@ The Password Vault is a locally encrypted password manager with a master passwor
 ## Features
 - Master password protection
 - Fernet (AES-256) encryption for stored passwords
-- Password generation
+- Password generation 
 - Clipboard integration
 - SQLite database storage
 - Change master password functionality
