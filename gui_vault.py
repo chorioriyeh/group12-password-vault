@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import messagebox, simpledialog, ttk
+from tkinter import messagebox, simpledialog
 import pyperclip
-from main import PasswordVault   # reuse your vault class
+from main import PasswordVault   # import the multi-user backend
+
 
 class VaultApp:
     def __init__(self, root):
@@ -9,6 +10,7 @@ class VaultApp:
         self.root.title("Password Vault")
         self.vault = PasswordVault()
         self.vault.initialize_db()
+        self.username = None
         self.show_startup()
 
     def clear_frame(self):
@@ -18,11 +20,13 @@ class VaultApp:
     def show_startup(self):
         self.clear_frame()
         tk.Label(self.root, text="Password Vault", font=("Arial", 16)).pack(pady=10)
-
         tk.Button(self.root, text="Create New Vault", command=self.create_vault).pack(pady=5)
         tk.Button(self.root, text="Unlock Vault", command=self.unlock_vault).pack(pady=5)
 
     def create_vault(self):
+        uname = simpledialog.askstring("Create Vault", "Enter username:")
+        if not uname:
+            return
         pwd = simpledialog.askstring("Master Password", "Enter new master password:", show="*")
         confirm = simpledialog.askstring("Confirm Password", "Re-enter master password:", show="*")
         if not pwd or len(pwd) < 8:
@@ -31,24 +35,26 @@ class VaultApp:
         if pwd != confirm:
             messagebox.showerror("Error", "Passwords do not match.")
             return
-        if self.vault.setup_vault(pwd):
+        if self.vault.setup_vault(uname, pwd):
+            self.username = uname
             messagebox.showinfo("Success", "Vault created successfully!")
             self.show_main_menu()
         else:
-            messagebox.showerror("Error", "Vault already exists!")
+            messagebox.showerror("Error", "Username already exists!")
 
     def unlock_vault(self):
+        uname = simpledialog.askstring("Unlock Vault", "Enter username:")
         pwd = simpledialog.askstring("Unlock Vault", "Enter master password:", show="*")
-        if pwd and self.vault.unlock_vault(pwd):
+        if uname and pwd and self.vault.unlock_vault(uname, pwd):
+            self.username = uname
             messagebox.showinfo("Success", "Vault unlocked successfully!")
             self.show_main_menu()
         else:
-            messagebox.showerror("Error", "Invalid master password!")
+            messagebox.showerror("Error", "Invalid username or password!")
 
     def show_main_menu(self):
         self.clear_frame()
-        tk.Label(self.root, text="Main Menu", font=("Arial", 14)).pack(pady=10)
-
+        tk.Label(self.root, text=f"Main Menu ({self.username})", font=("Arial", 14)).pack(pady=10)
         buttons = [
             ("Add Password", self.add_password),
             ("Retrieve Password", self.retrieve_password),
@@ -56,13 +62,14 @@ class VaultApp:
             ("View Entry Details", self.view_entry),
             ("Delete Entry", self.delete_entry),
             ("Generate Password", self.generate_password),
-            ("Change Master Password", self.change_master),
+            ("Change Master Password", self.change_master_password),
             ("Exit", self.root.quit)
         ]
         for text, cmd in buttons:
             tk.Button(self.root, text=text, width=25, command=cmd).pack(pady=3)
 
     def add_password(self):
+        user_id = self.vault.user_id
         service = simpledialog.askstring("Add", "Service:")
         username = simpledialog.askstring("Add", "Username:")
         pwd = simpledialog.askstring("Add", "Password (leave blank to auto-generate):", show="*")
@@ -99,6 +106,7 @@ class VaultApp:
         else:
             messagebox.showinfo("Empty", "No services found.")
 
+
     def view_entry(self):
         service = simpledialog.askstring("View", "Service:")
         usernames = self.vault.list_entries(service)
@@ -132,7 +140,7 @@ class VaultApp:
         if messagebox.askyesno("Password", f"Generated: {pwd}\n\nCopy to clipboard?"):
             pyperclip.copy(pwd)
 
-    def change_master(self):
+    def change_master_password(self):
         old = simpledialog.askstring("Change Master", "Old password:", show="*")
         new = simpledialog.askstring("Change Master", "New password:", show="*")
         confirm = simpledialog.askstring("Change Master", "Confirm new password:", show="*")
@@ -142,10 +150,11 @@ class VaultApp:
         if new != confirm:
             messagebox.showerror("Error", "Passwords do not match.")
             return
-        if self.vault.change_master_password(old, new):
+        if self.vault.change_master_password(old, new, confirm):
             messagebox.showinfo("Success", "Master password changed.")
         else:
             messagebox.showerror("Error", "Failed to change master password.")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
