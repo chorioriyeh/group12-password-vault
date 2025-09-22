@@ -1,6 +1,6 @@
 # Password Vault
 
-A secure local password manager with encryption, built for virtual environment deployment.
+The Password Vault is a locally encrypted password manager with a master password, add/get/list entries, and a copy-to-clipboard feature built for virtual environment deployment.
 
 ## Features
 - Master password protection
