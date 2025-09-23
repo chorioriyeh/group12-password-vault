@@ -161,6 +161,7 @@ class PasswordVault:
         self.conn.commit()
         return True
 
+
     def get_password(self, service, username):
         """Retrieve a password"""
         if not self.cipher or not self.user_id:
